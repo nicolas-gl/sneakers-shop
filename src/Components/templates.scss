@@ -1,0 +1,22 @@
+%greenButton {
+    height: 55px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #9DD558;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    position: relative;
+  
+    &:hover {
+      background: lighten(#9DD558, 10%);
+    }
+  
+    &:active {
+      background: darken(#9DD558, 5%);
+    }
+}

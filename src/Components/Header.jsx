@@ -16,11 +16,11 @@ export default function Header(props) {
 
       <ul className={styles.headerRight}>
         <li>
-        <img width={20} height={20} src="/img/icons/cart.svg" alt='cart-icon'/>
-        <span className={styles.headerCartPrice}>1205 руб.</span>
+          <img onClick={props.openCard} src="/img/icons/cart.svg" alt='cart-icon'/>
+          <span onClick={props.openCard} className={styles.headerCartPrice}>1205 руб.</span>
         </li>
         <li>
-        <img width={20} height={20} src="/img/icons/user.svg" alt='user-icon'/>
+          <img width={20} height={20} src="/img/icons/user.svg" alt='user-icon'/>
         </li>
       </ul>
       
