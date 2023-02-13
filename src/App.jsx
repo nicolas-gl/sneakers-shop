@@ -6,30 +6,34 @@ import Cart from './Components/Cart';
 import Header from './Components/Header';
 
 
+let render = 0
+
 export default function App() {
 
-  const [cardOpened, setCardOpened] = useState(false);
+  const [cartOpened, setCartOpened] = useState(false);
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
 
   useEffect( () => {
     axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/items')
       .then( res => {setItems(res.data)} );
+  }, [] );
+
+  useEffect( () => {
     axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/cart')
       .then( res => {setCartItems(res.data)} );  
-  }, [] );
+  }, [cartOpened] );
 
 
   const onAddToCart = (obj) => {
-    axios.post('https://63da6dca2af48a60a7cd9696.mockapi.io/cart', obj);
-    console.log('Добавлен', obj)
     setCartItems(prev => [...prev, obj]);
+    axios.post('https://63da6dca2af48a60a7cd9696.mockapi.io/cart', obj);
   };
 
-  const onDelFromCard = (id) => {
-    console.log(id);
+  const onDelFromCart = (id) => {
     axios.delete(`https://63da6dca2af48a60a7cd9696.mockapi.io/cart/${id}`);
     setCartItems(prev => prev.filter(item => item.id !== id ));
   };
@@ -38,12 +42,19 @@ export default function App() {
     setSearchValue (event.target.value);
   };
 
+  const onAddToFavorites = (obj) => {
+    setFavorites(prev => [...prev, obj]);
+  }
+
+
+  console.log(++render);
+
 
   return (
     <div className={styles.wrapper}>
 
-      {cardOpened ? <Cart closeCard={() => {setCardOpened(false)}} deleteItem={onDelFromCard} cartItems={cartItems} /> : null}
-      <Header openCard={() => {setCardOpened(true)}} />
+      {cartOpened ? <Cart closeCart={() => {setCartOpened(false)}} onCartDel={onDelFromCart} cartItems={cartItems} /> : null}
+      <Header openCart={() => {setCartOpened(true)}} />
 
       <div>
 
@@ -71,8 +82,9 @@ export default function App() {
               price={item.price}
               imgUrl={item.imgUrl}
               imgAlt={item.imgAlt}
-              onFavorite = {() => console.log('Added to favorites')}
-              onPlus = {(obj) => onAddToCart(obj)}
+              onFavorite = {(obj) => onAddToFavorites(obj)}
+              onCartAdd = {(obj) => onAddToCart(obj)}
+              onCartDel={onDelFromCart}
             />)}
         </div>
 

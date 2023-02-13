@@ -1,4 +1,5 @@
 import styles from './Header.module.scss'
+import { Link } from "react-router-dom";
 
 
 export default function Header(props) {
@@ -16,11 +17,16 @@ export default function Header(props) {
 
       <ul className={styles.headerRight}>
         <li>
-          <img onClick={props.openCard} src="/img/icons/cart.svg" alt='cart-icon'/>
-          <span onClick={props.openCard} className={styles.headerCartPrice}>1205 руб.</span>
+          <img onClick={props.openCart} src="/img/icons/cart.svg" alt='Cart'/>
+          <span onClick={props.openCart} className={styles.headerCartPrice}>1205 руб.</span>
         </li>
         <li>
-          <img width={20} height={20} src="/img/icons/user.svg" alt='user-icon'/>
+        <Link to={`/favorites`}>
+          <img className={styles.favorites} width={20} height={20} src="/img/icons/heart.svg" alt='Heart'/>
+        </Link>
+        </li>
+        <li>
+          <img src="/img/icons/user.svg" alt='User'/>
         </li>
       </ul>
       
