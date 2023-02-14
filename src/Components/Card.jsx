@@ -1,29 +1,38 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './Card.module.scss'
 
 
-export default function Card({ now, id, title, imgUrl, imgAlt, price, onFavorite, onCartAdd, onCartDel }) {
+export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, onCartAdd, onCartDel, cartItems }) {
 
   const [inCart, setInCart] = useState(false);
+
   // const [isFavorite, setIsFavorite] = useState(false);
 
+  let nowInCart;
 
-  const onAddCartClicked = () => {
-    inCart 
-    ? onCartDel(id)
-    : onCartAdd({ id, title, imgUrl, imgAlt, price });
+  useEffect( () => {
+    nowInCart = cartItems.find(item => item.sku === sku);
+    // cartItems.some((item) => item.sku === sku)
+    nowInCart
+      ? setInCart(true)
+      : setInCart(false)
+    }
+  , [cartItems] );
+
+
+  const onCartAddClicked = () => {
+    inCart
+    ? onCartDel(nowInCart.id)
+    : onCartAdd({ sku, title, imgUrl, imgAlt, price });
     setInCart(!inCart);
   };
 
-
-
-  const onAddFavoritesClicked = () => {
+    // const onAddFavoritesClicked = () => {
     // setIsFavorite(!isFavorite);
     // isCartAdded
     // onFavorite({ id, title, imgUrl, imgAlt, price });
     // setIsFavoritesAdded(!isFavoritesAdded);
-  };
-
+  // };
 
 
   return (
@@ -45,7 +54,7 @@ export default function Card({ now, id, title, imgUrl, imgAlt, price, onFavorite
         </div>
         <img
           className={styles.plusButton}
-          onClick={onAddCartClicked}
+          onClick={onCartAddClicked}
           src={inCart ? "/img/icons/added.svg" : "/img/icons/plus.svg"}
           alt="Plus"
         />

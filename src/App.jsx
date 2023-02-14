@@ -25,15 +25,19 @@ export default function App() {
   useEffect( () => {
     axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/cart')
       .then( res => {setCartItems(res.data)} );  
-  }, [cartOpened] );
+  }, [] );
 
 
-  const onAddToCart = (obj) => {
-    setCartItems(prev => [...prev, obj]);
-    axios.post('https://63da6dca2af48a60a7cd9696.mockapi.io/cart', obj);
+  const addToCart = async (obj) => {
+    const { data } = await axios.post('https://63da6dca2af48a60a7cd9696.mockapi.io/cart', obj);
+
+    console.log(data);
+    setCartItems(prev => [...prev, data]);
+
+    console.log(data);
   };
 
-  const onDelFromCart = (id) => {
+  const delFromCart = (id) => {
     axios.delete(`https://63da6dca2af48a60a7cd9696.mockapi.io/cart/${id}`);
     setCartItems(prev => prev.filter(item => item.id !== id ));
   };
@@ -53,7 +57,7 @@ export default function App() {
   return (
     <div className={styles.wrapper}>
 
-      {cartOpened ? <Cart closeCart={() => {setCartOpened(false)}} onCartDel={onDelFromCart} cartItems={cartItems} /> : null}
+      {cartOpened ? <Cart closeCart={() => {setCartOpened(false)}} onCartDel={delFromCart} cartItems={cartItems} /> : null}
       <Header openCart={() => {setCartOpened(true)}} />
 
       <div>
@@ -74,17 +78,13 @@ export default function App() {
         <div className={styles.cards}>
           {items.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => 
             <Card
-              key={`card-${item.id}`}
-              // key={item.id}   не будет ли спорить с key у корзины?
-              // ref={item.ref}
-              id={item.id}
-              title={item.title}
-              price={item.price}
-              imgUrl={item.imgUrl}
-              imgAlt={item.imgAlt}
+              key={`card-${item.sku}`}
+              // key={item.sku}   не будет ли спорить с key у корзины?
+              {...item}
               onFavorite = {(obj) => onAddToFavorites(obj)}
-              onCartAdd = {(obj) => onAddToCart(obj)}
-              onCartDel={onDelFromCart}
+              onCartAdd = {(obj) => addToCart(obj)}
+              onCartDel = {delFromCart}
+              cartItems = {cartItems}
             />)}
         </div>
 
