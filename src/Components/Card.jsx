@@ -6,13 +6,13 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
 
   const [inCart, setInCart] = useState(false);
 
+
   // const [isFavorite, setIsFavorite] = useState(false);
 
-  let nowInCart;
 
   useEffect( () => {
+    let nowInCart;
     nowInCart = cartItems.find(item => item.sku === sku);
-    // cartItems.some((item) => item.sku === sku)
     nowInCart
       ? setInCart(true)
       : setInCart(false)
@@ -21,10 +21,15 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
 
 
   const onCartAddClicked = () => {
-    inCart
-    ? onCartDel(nowInCart.id)
-    : onCartAdd({ sku, title, imgUrl, imgAlt, price });
-    setInCart(!inCart);
+    setInCart("waiting");
+    let nowInCart = cartItems.find(item => item.sku === sku);
+    if (inCart) {
+      onCartDel(nowInCart.id)
+    } else {
+      onCartAdd({ sku, title, imgUrl, imgAlt, price });
+    }
+    // setInCart(!inCart);
+    // setInCart("waiting");
   };
 
     // const onAddFavoritesClicked = () => {
@@ -52,12 +57,17 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
           <p>Цена</p>
           <b>{price} руб.</b>
         </div>
-        <img
-          className={styles.plusButton}
-          onClick={onCartAddClicked}
-          src={inCart ? "/img/icons/added.svg" : "/img/icons/plus.svg"}
-          alt="Plus"
-        />
+
+        {inCart==="waiting"
+          ? <img width={32} src="/img/icons/waiting.svg" alt="Wait"/>
+          : <img
+            className={styles.plusButton}
+            onClick={onCartAddClicked}
+            src={inCart===true ? "/img/icons/added.svg" : "/img/icons/plus.svg"}
+            alt="Plus"
+          />
+        }
+        
       </div>
 
     </div>

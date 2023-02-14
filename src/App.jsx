@@ -31,10 +31,9 @@ export default function App() {
   const addToCart = async (obj) => {
     const { data } = await axios.post('https://63da6dca2af48a60a7cd9696.mockapi.io/cart', obj);
 
-    console.log(data);
+
     setCartItems(prev => [...prev, data]);
 
-    console.log(data);
   };
 
   const delFromCart = (id) => {
