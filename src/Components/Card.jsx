@@ -17,7 +17,7 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
       ? setInCart(true)
       : setInCart(false)
     }
-  , [cartItems] );
+  , [cartItems, sku] );
 
 
   const onCartAddClicked = () => {
@@ -28,8 +28,6 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
     } else {
       onCartAdd({ sku, title, imgUrl, imgAlt, price });
     }
-    // setInCart(!inCart);
-    // setInCart("waiting");
   };
 
     // const onAddFavoritesClicked = () => {
@@ -59,7 +57,7 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
         </div>
 
         {inCart==="waiting"
-          ? <img width={32} src="/img/icons/waiting.svg" alt="Wait"/>
+          ? <img width={32} height={32} src="/img/icons/waiting.svg" alt="Wait"/>
           : <img
             className={styles.plusButton}
             onClick={onCartAddClicked}

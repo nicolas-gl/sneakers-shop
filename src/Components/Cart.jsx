@@ -13,7 +13,7 @@ export default function Cart({closeCart, onCartDel, cartItems=[]}) {
           ? <> 
             <div className={styles.cartItems}>
             {cartItems.map(item => (
-              <div key={item.id} id={item.id} className={styles.cartItem}>
+              <div key={item.sku} id={item.id} className={styles.cartItem}>
                 <img width={70} height={70} src={item.imgUrl} alt={item.imgAlt} />
                 <div className={styles.cartItemPrice}>
                   <p>{item.title}</p>

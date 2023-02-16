@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import Main from './Components/Main';
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import Test from './Components/Test';
 
 
 const router = createBrowserRouter([
@@ -10,9 +12,19 @@ const router = createBrowserRouter([
     element: <App />,
     // errorElement: <ErrorPage />,
     errorElement:
-      <div>ошибка 404. Страница в разработке
+    <div>ошибка 404. Страница в разработке
         <Link to={`/`}><button>Go to main page</button></Link>
       </div>,
+    children: [
+      {
+        index: true,
+        element: <Test />,
+      },
+      {
+        path: "/test",
+        element: <Test />,
+      },
+    ],
   },
   {
     path: "/favorites",
@@ -28,6 +40,5 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
-    {/* <App /> */}
   </React.StrictMode>
 );

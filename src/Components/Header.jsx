@@ -7,8 +7,11 @@ export default function Header(props) {
   return (
     <header>
 
+        
       <div className={styles.headerLeft}>
-        <img width={40} height={40} src="/img/icons/logo.png" alt='logo-icon'/>
+        <Link to={`/`}>
+          <img width={40} height={40} src="/img/icons/logo.png" alt='logo-icon'/>
+        </Link>
         <div>
         <h3>React Sneakers</h3>
         <p>Магазин лучших кроссовок</p>
