@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import App from './App';
 import Main from './Components/Main';
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import Test from './Components/Test';
 
 
@@ -18,11 +18,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Test />,
+        element: <Main />,
       },
       {
         path: "/test",
-        element: <Test />,
+        element: <> <Test /><Test /></>,
       },
     ],
   },

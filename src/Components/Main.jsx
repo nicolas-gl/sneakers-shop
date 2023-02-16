@@ -1,10 +1,14 @@
-import React from 'react' // оставить ли?
+import { useContext } from 'react';
 import Card from './Card';
-
 import styles from '../App.module.scss'
+import AppContext from '../context.js'
 
 
-export default function Main({items, onAddToFavorites, addToCart, delFromCart, cartItems, searchValue, setSearchValue, onChangeSearchInput}) {
+export default function Main() {
+  
+  const { items, searchValue, setSearchValue, onChangeSearchInput, onAddToFavorites, addToCart } = useContext(AppContext);
+
+  
   return (
     <>
       <div className={styles.contentHeader}>
@@ -21,15 +25,16 @@ export default function Main({items, onAddToFavorites, addToCart, delFromCart, c
       </div>
         
       <div className={styles.cards}>
+
         {items.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => 
-          <Card
+            <Card
             key={item.sku}
             {...item}
             onFavorite = {(obj) => onAddToFavorites(obj)}
-            onCartAdd = {(obj) => addToCart(obj)}
-            onCartDel = {delFromCart}
-            cartItems = {cartItems}
-          />)}
+            onCartAdd = {(obj) => addToCart(obj)}   без этого работает в Card почему-то
+          />)
+        }
+
       </div>
     </>
   )

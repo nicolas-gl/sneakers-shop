@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext} from 'react';
 import axios from 'axios';
 import styles from './App.module.scss'
 import Cart from './Components/Cart';
 import Header from './Components/Header';
-import Main from './Components/Main';
 import { Outlet } from 'react-router-dom';
+import AppContext from './context.js'
 
-
-let render = 0
 
 export default function App() {
 
@@ -56,62 +54,29 @@ export default function App() {
   }
 
 
-  console.log(++render);
-
-
   return (
-    <div className={styles.wrapper}>
+    <AppContext.Provider 
+      value={{
+        cartOpened,
+        items, 
+        cartItems,
+        favorites, 
+        searchValue, 
+        addToCart,
+        onAddToFavorites,
+        setSearchValue,
+        onChangeSearchInput,
+      }}
+    >
+      <div className={styles.wrapper}>
 
-      {cartOpened ? <Cart closeCart={() => {setCartOpened(false)}} onCartDel={delFromCart} cartItems={cartItems} /> : null}
-      <Header openCart={() => {setCartOpened(true)}} />
+        {cartOpened ? <Cart closeCart={() => {setCartOpened(false)}} onCartDel={delFromCart} cartItems={cartItems} /> : null}
+        <Header openCart={() => {setCartOpened(true)}} />
 
+        <Outlet />
 
-      <Outlet />
-      
-      <Main 
-        items = {items}
-        onAddToFavorites = {onAddToFavorites}
-        addToCart = {addToCart}
-        delFromCart = {delFromCart}
-        cartItems = {cartItems}
-        searchValue = {searchValue}
-        setSearchValue = {setSearchValue}
-        onChangeSearchInput = {onChangeSearchInput}
-      />
-
-
-      
-      {/* <div>
-
-        <div className={styles.contentHeader}>
-          <h1>{searchValue ? `Поиск по запросу "${searchValue}"` : 'Все кроссовки'} </h1>
-          <div className={styles.searchBlock}>
-
-            {searchValue
-              ? <img width={16} height={16} onClick={() => setSearchValue('')} src="/img/icons/x.svg" alt="reset"  />
-              : <img src="/img/icons/search.svg" alt="search" />
-            }
-
-            <input onChange={onChangeSearchInput} value={searchValue} type="text" placeholder="Поиск..." />
-          </div>
-        </div>
-        
-        <div className={styles.cards}>
-          {items.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => 
-            <Card
-              key={`card-${item.sku}`}
-              // key={item.sku}   не будет ли спорить с key у корзины?
-              {...item}
-              onFavorite = {(obj) => onAddToFavorites(obj)}
-              onCartAdd = {(obj) => addToCart(obj)}
-              onCartDel = {delFromCart}
-              cartItems = {cartItems}
-            />)}
-        </div>
-
-      </div> */}
-      
-    </div>
+      </div>
+    </AppContext.Provider>
   );
 };
 

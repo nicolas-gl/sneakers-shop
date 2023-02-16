@@ -1,12 +1,14 @@
+import { useContext } from 'react';
+import AppContext from '../context.js';
 
 
-
-export default function Test( { param } ) {
+export default function Test( {} ) {
+    const { items } = useContext(AppContext);
     // param = 32
-    console.log(param)
+    console.log(items)
     return(
         <>
-            <b>{param}</b>
+            <b>{}тест</b>
             <img src="/img/icons/del-close.svg" alt="" />
         </>
     
