@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 import Card from './Card';
-import styles from '../App.module.scss'
+// import styles from '../App.module.scss'
+import styles from './Main.module.scss'
 import AppContext from '../context.js'
 
 
 export default function Main() {
   
   const { items, searchValue, setSearchValue, onChangeSearchInput, onAddToFavorites, addToCart } = useContext(AppContext);
-
-  
+  console.log(AppContext)  
   return (
     <>
       <div className={styles.contentHeader}>

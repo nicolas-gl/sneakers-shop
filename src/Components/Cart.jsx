@@ -1,5 +1,4 @@
 import styles from './Cart.module.scss'
-import AppContext from '../context'
 
 
 export default function Cart({closeCart, onCartDel, cartItems=[]}) {
@@ -51,9 +50,6 @@ export default function Cart({closeCart, onCartDel, cartItems=[]}) {
               </button>
             </div>
         }
-
-
-
 
       </aside>
     </div>

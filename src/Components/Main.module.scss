@@ -1,0 +1,43 @@
+.contentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  h1 {
+    padding: 40px 20px 40px 60px;
+    margin: 0;
+    word-break: break-all;
+}}
+
+.searchBlock {
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  margin-right: 60px;
+  width: 250px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+
+  img {
+    margin-left: 14px;
+  }
+  
+  input {
+    width: 100%;
+    margin-left: 18px;
+    margin-right: 14px;
+    border: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.cards {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-evenly;
+  transition: box-shadow .9s ease-in-out;
+  flex-wrap: wrap;
+}

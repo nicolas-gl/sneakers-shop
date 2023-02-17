@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext} from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './App.module.scss'
 import Cart from './Components/Cart';
@@ -31,8 +31,8 @@ export default function App() {
     try {
       const { data } = await axios.post('https://63da6dca2af48a60a7cd9696.mockapi.io/cart', obj);
       setCartItems(prev => [...prev, data]);
-    } catch {
-      console.log("не удалось добавить в корзину")
+    } catch (error) {
+      console.log("не удалось добавить в корзину", error)
     }
   };
 
@@ -40,8 +40,8 @@ export default function App() {
     try {
       axios.delete(`https://63da6dca2af48a60a7cd9696.mockapi.io/cart/${id}`);
       setCartItems(prev => prev.filter(item => item.id !== id ));
-    } catch {
-      console.log("не удалось удалить")
+    } catch (error) {
+      console.log("не удалось удалить", error)
     }
   };
 
@@ -63,6 +63,7 @@ export default function App() {
         favorites, 
         searchValue, 
         addToCart,
+        delFromCart,
         onAddToFavorites,
         setSearchValue,
         onChangeSearchInput,
@@ -72,10 +73,10 @@ export default function App() {
 
         {cartOpened ? <Cart closeCart={() => {setCartOpened(false)}} onCartDel={delFromCart} cartItems={cartItems} /> : null}
         <Header openCart={() => {setCartOpened(true)}} />
-
         <Outlet />
 
       </div>
+
     </AppContext.Provider>
   );
 };

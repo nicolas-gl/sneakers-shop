@@ -10,6 +10,7 @@ let loading
 export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, onCartAdd }) {
 
   const { cartItems, delFromCart } = useContext(AppContext);
+  
 
   const [inCart, setInCart] = useState(false);
 
