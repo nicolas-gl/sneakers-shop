@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import App from './App';
 import Main from './Components/Main';
 import Test from './Components/Test';
+import Favorites from './Components/Favorites';
+
 
 
 const router = createBrowserRouter([
@@ -21,17 +23,19 @@ const router = createBrowserRouter([
         element: <Main />,
       },
       {
-        path: "/test",
-        element: <> <Test /><Test /></>,
+        path: "/favorites",
+        element: <Favorites />,
       },
     ],
   },
   {
-    path: "/favorites",
-    element: <div>
-      <b>This is test page</b>
-      <Link to={`/`}><button>Go to main page</button></Link>
-    </div>,
+    path: "/test",
+    element: 
+      <div>
+        <Test/>
+        <b>This is test page</b>
+        <Link to={`/`}><button>Go to main page</button></Link>
+      </div>,
   },
 ]);
 

@@ -6,7 +6,7 @@ import AppContext from '../context.js'
 
 export default function Main() {
 
-  const { items, searchValue, setSearchValue, onChangeSearchInput, onAddToFavorites, addToCart, loading } = useContext(AppContext);
+  const { items, searchValue, setSearchValue, changeSearchInput, addToFavorites, addToCart, itemsLoading } = useContext(AppContext);
 
   return (
     <>
@@ -19,37 +19,25 @@ export default function Main() {
             : <img src="/img/icons/search.svg" alt="search" />
           }
 
-          <input onChange={onChangeSearchInput} value={searchValue} type="text" placeholder="Поиск..." />
+          <input onChange={changeSearchInput} value={searchValue} type="text" placeholder="Поиск..." />
         </div>
       </div>
 
       <div className={styles.cards}>
-
-        
-        {loading 
-          ? [...Array(8)].map((item, index) => <Card
-          key={index}
-          loading = {loading}
+        {itemsLoading 
+          ? [...Array(12)].map((item, index) => 
+            <Card
+              key={index}
+              itemsLoading = {itemsLoading}
             />)
           : items.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) =>
             <Card
               key={item.sku}
               {...item}
-              onFavorite={(obj) => onAddToFavorites(obj)}
+              onFavorite={(obj) => addToFavorites(obj)}
               onCartAdd={(obj) => addToCart(obj)}
             />)
         }
-
-
-        {/* {items.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) =>
-          <Card
-            key={item.sku}
-            {...item}
-            onFavorite={(obj) => onAddToFavorites(obj)}
-            onCartAdd={(obj) => addToCart(obj)}
-          />)
-        } */}
-
       </div>
     </>
   )

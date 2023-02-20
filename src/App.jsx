@@ -14,23 +14,22 @@ export default function App() {
   const [cartItems, setCartItems] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [itemsLoading, setItemsLoading] = useState(true);
 
-  
-  useEffect( () => {
+
+  useEffect(() => {
     try {
       axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/items')
-        .then( res => {setItems(res.data)} );
+        .then(res => { setItems(res.data) });
       axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/cart')
-        .then( res => {
-          setCartItems(res.data); 
-          setLoading(false);
-      } ); 
+        .then(res => {
+          setCartItems(res.data);
+          setItemsLoading(false);
+        });
     } catch (error) {
       console.log("не удалось загрузить товары или корзину", error)
     };
-    
-  }, [] );
+  }, []);
 
   const addToCart = async (obj) => {
     try {
@@ -44,40 +43,45 @@ export default function App() {
   const delFromCart = (id) => {
     try {
       axios.delete(`https://63da6dca2af48a60a7cd9696.mockapi.io/cart/${id}`);
-      setCartItems(prev => prev.filter(item => item.id !== id ));
+      setCartItems(prev => prev.filter(item => item.id !== id));
     } catch (error) {
       console.log("не удалось удалить", error)
     }
   };
 
-  const onChangeSearchInput = (event) => {
-    setSearchValue (event.target.value);
+  const changeSearchInput = (event) => {
+    setSearchValue(event.target.value);
   };
 
-  const onAddToFavorites = (obj) => {
+  const addToFavorites = (obj) => {
     setFavorites(prev => [...prev, obj]);
-  }
+  };
+
+  const delFromFavorites = (sku) => {
+    setFavorites(prev => prev.filter(item => item.sku !== sku));
+  };
 
 
   return (
-    <AppContext.Provider 
+    <AppContext.Provider
       value={{
-        items, 
+        items,
         cartItems,
-        favorites, 
-        searchValue,
-        loading,
         addToCart,
         delFromCart,
-        onAddToFavorites,
+        favorites,
+        itemsLoading,
+        addToFavorites,
+        delFromFavorites,
+        searchValue,
         setSearchValue,
-        onChangeSearchInput,
+        changeSearchInput,
       }}
     >
       <div className={styles.wrapper}>
 
-        {cartOpened ? <Cart closeCart={() => {setCartOpened(false)}} onCartDel={delFromCart} cartItems={cartItems} /> : null}
-        <Header openCart={() => {setCartOpened(true)}} />
+        {cartOpened ? <Cart closeCart={() => { setCartOpened(false) }} onCartDel={delFromCart} cartItems={cartItems} /> : null}
+        <Header openCart={() => { setCartOpened(true) }} />
         <Outlet />
 
       </div>
