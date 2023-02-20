@@ -14,17 +14,22 @@ export default function App() {
   const [cartItems, setCartItems] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [loading, setLoading] = useState(true);
 
-
+  
   useEffect( () => {
     try {
       axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/items')
         .then( res => {setItems(res.data)} );
       axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/cart')
-        .then( res => {setCartItems(res.data)} ); 
+        .then( res => {
+          setCartItems(res.data); 
+          setLoading(false);
+      } ); 
     } catch (error) {
       console.log("не удалось загрузить товары или корзину", error)
-    }
+    };
+    
   }, [] );
 
   const addToCart = async (obj) => {
@@ -57,11 +62,11 @@ export default function App() {
   return (
     <AppContext.Provider 
       value={{
-        cartOpened,
         items, 
         cartItems,
         favorites, 
-        searchValue, 
+        searchValue,
+        loading,
         addToCart,
         delFromCart,
         onAddToFavorites,

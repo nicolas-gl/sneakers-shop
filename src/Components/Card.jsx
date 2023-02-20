@@ -4,14 +4,9 @@ import ContentLoader from 'react-content-loader'
 import AppContext from '../context.js'
 
 
-let loading
-// loading = true;   ДОПИЛИТЬ КРАСОТУ
-
 export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, onCartAdd }) {
 
-  const { cartItems, delFromCart } = useContext(AppContext);
-  
-
+  const { cartItems, delFromCart, loading } = useContext(AppContext);
   const [inCart, setInCart] = useState(false);
 
   // const [isFavorite, setIsFavorite] = useState(false);
@@ -82,7 +77,7 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
         alt="unliked"
       />
 
-      <img width='100%' src={imgUrl} alt={imgAlt} />
+      <img width={150} src={imgUrl} alt={imgAlt} />
       <h5>{title}</h5>
 
       <div className={styles.cardButtom}>
