@@ -6,19 +6,23 @@ import AppContext from '../context.js'
 
 export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, onCartAdd }) {
 
-  const { cartItems, delFromCart, itemsLoading } = useContext(AppContext);
+  const { cartItems, favorites, delFromCart, itemsLoading, delFromFavorites } = useContext(AppContext);
   const [inCart, setInCart] = useState(false);
-
-  // const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState();
 
   useEffect( () => {
-    let nowInCart;
-    nowInCart = cartItems.find(item => item.sku === sku);
+    let nowInCart = cartItems.find(item => item.sku === sku);
     nowInCart
       ? setInCart(true)
       : setInCart(false)
     }
   ,[cartItems, sku] );
+
+  useEffect( () => {
+    if (favorites.find(item => item.sku === sku)) {
+      setIsFavorite(true);
+    }
+  } ,[favorites, sku] );
 
 
   const onCartAddClicked = () => {
@@ -30,14 +34,16 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
       onCartAdd({ sku, title, imgUrl, imgAlt, price });
     }
   };
-  
 
-    // const onAddFavoritesClicked = () => {
-    // setIsFavorite(!isFavorite);
-    // isCartAdded
-    // onFavorite({ id, title, imgUrl, imgAlt, price });
-    // setIsFavoritesAdded(!isFavoritesAdded);
-  // };
+
+  const onAddFavoritesClicked = () => {
+    setIsFavorite(!isFavorite);
+    if (isFavorite) {
+      delFromFavorites(sku)
+    } else {
+      onFavorite({ sku, title, imgUrl, imgAlt, price });
+    }
+ };
 
 
   return (
@@ -72,8 +78,8 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
         : <>
             <img
               className={styles.favorite}
-              // onClick={onAddFavoritesClicked}
-              // src={isFavorite ? "/img/icons/heart-liked.svg" : "/img/icons/heart-unliked.svg"}
+              onClick={onAddFavoritesClicked}
+              src={isFavorite ? "/img/icons/heart-liked.svg" : "/img/icons/heart-unliked.svg"}
               alt="unliked"
             />
 
@@ -89,11 +95,11 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
               {inCart==="waiting"
                 ? <img width={32} height={32} src="/img/icons/waiting.svg" alt="Wait"/>
                 : <img
-                  className={styles.plusButton}
-                  onClick={onCartAddClicked}
-                  src={inCart===true ? "/img/icons/added.svg" : "/img/icons/plus.svg"}
-                  alt="Plus"
-                />
+                    className={styles.plusButton}
+                    onClick={onCartAddClicked}
+                    src={inCart===true ? "/img/icons/added.svg" : "/img/icons/plus.svg"}
+                    alt="Plus"
+                  />
               }
             </div>
           </>

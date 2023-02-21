@@ -12,7 +12,7 @@ export default function Header(props) {
           <img width={40} height={40} src="/img/icons/logo.png" alt='logo-icon'/>
         </Link>
         <div>
-        <h3>React Sneakers</h3>
+        <h3>First Sneakers Shop</h3>
         <p>Магазин лучших кроссовок</p>
         </div>
       </div>
@@ -22,10 +22,10 @@ export default function Header(props) {
           <img onClick={props.openCart} src="/img/icons/cart.svg" alt='Cart'/>
           <span onClick={props.openCart} className={styles.headerCartPrice}>1205 руб.</span>
         </li>
-        <li>
-        <Link to={`/favorites`}>
-          <img className={styles.favorites} width={20} height={20} src="/img/icons/heart.svg" alt='Heart'/>
-        </Link>
+        <li className={styles.favorites}>
+          <Link to={`/favorites`}>
+            <img width={20} height={20} src="/img/icons/heart.svg" alt='Heart'/>
+          </Link>
         </li>
         <li>
           <img src="/img/icons/user.svg" alt='User'/>
