@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import styles from './Card.module.scss'
 import ContentLoader from 'react-content-loader'
-import AppContext from '../context.js'
+import AppContext from '../index.js'
 
 
 export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, onCartAdd }) {

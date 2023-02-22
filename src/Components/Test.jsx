@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import AppContext from '../context.js';
+import AppContext from '../index.js';
 
 
-export default function Test( {} ) {
+export default function Test( ) {
     const { items } = useContext(AppContext);
     // param = 32
     console.log(items)
@@ -13,3 +13,4 @@ export default function Test( {} ) {
         </>
     
 )}
+

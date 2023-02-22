@@ -7,6 +7,9 @@ import Test from './Components/Test';
 import Favorites from './Components/Favorites';
 
 
+const AppContext = React.createContext({});
+export default AppContext;
+
 
 const router = createBrowserRouter([
   {

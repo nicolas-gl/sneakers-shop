@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styles from './Favorites.module.scss'
 import Card from './Card';
-import AppContext from '../context.js'
+import AppContext from '../index.js'
 import { Link } from "react-router-dom";
 
 

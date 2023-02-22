@@ -4,7 +4,7 @@ import styles from './App.module.scss'
 import Cart from './Components/Cart';
 import Header from './Components/Header';
 import { Outlet } from 'react-router-dom';
-import AppContext from './context.js'
+import AppContext from './index.js'
 
 
 export default function App() {
