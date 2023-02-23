@@ -49,6 +49,7 @@ export default function App() {
     }
   };
 
+
   const changeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
@@ -80,8 +81,9 @@ export default function App() {
     >
       <div className={styles.wrapper}>
 
-        {cartOpened ? <Cart closeCart={() => { setCartOpened(false) }} onCartDel={delFromCart} cartItems={cartItems} /> : null}
+        {cartOpened ? <Cart setCartItems={setCartItems} closeCart={() => { setCartOpened(false) }} onCartDel={delFromCart} cartItems={cartItems} /> : null}
         <Header openCart={() => { setCartOpened(true) }} />
+
         <Outlet />
 
       </div>
