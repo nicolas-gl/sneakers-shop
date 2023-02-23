@@ -13,18 +13,6 @@ export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems }
   const onMakeOrder = async () => {
     setIsOrdered(true);
     setCartItems([]);
-
-    // for (item in cartItems) {
-    // for (let i = 0; i < cartItems.length; i++) {
-    //   const id = cartItems[i].id;
-    //   try {
-    //     await axios.delete(`https://63da6dca2af48a60a7cd9696.mockapi.io/cart/${id}`);
-    //     await delay(1000);
-    //   } catch (error) {
-    //     console.log("не удалось удалить", error)
-    //   }
-    // }
-
     for (let item of cartItems) {
       const id = item.id;
       try {
@@ -35,9 +23,10 @@ export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems }
         console.log("не удалось удалить", error)
       }
     }
-
-
   }
+
+
+  const cartTotal = cartItems.reduce((sum, obj) => obj.price + sum, 0);
 
 
   return (
@@ -66,12 +55,12 @@ export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems }
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>21 498 руб.</b>
+                  <b>{cartTotal} руб.</b>
                 </li>
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>1074 руб.</b>
+                  <b>{(cartTotal*0.05).toFixed(2)} руб.</b>
                 </li>
               </ul>
               <button className={styles.cartSubbmit} onClick={onMakeOrder}>Оформить заказ 

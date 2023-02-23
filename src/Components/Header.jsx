@@ -1,8 +1,15 @@
 import styles from './Header.module.scss'
 import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import AppContext from '..';
+
 
 
 export default function Header(props) {
+
+  const { cartItems } = useContext(AppContext);
+
+  const cartTotal = cartItems.reduce((sum, obj) => obj.price + sum, 0);
 
   return (
     <header>
@@ -20,7 +27,7 @@ export default function Header(props) {
       <ul className={styles.headerRight}>
         <li>
           <img onClick={props.openCart} src="/img/icons/cart.svg" alt='Cart'/>
-          <span onClick={props.openCart} className={styles.headerCartPrice}>1205 руб.</span>
+          <span onClick={props.openCart} className={styles.headerCartPrice}>{cartTotal} руб.</span>
         </li>
         <li className={styles.favorites}>
           <Link to={`/favorites`}>

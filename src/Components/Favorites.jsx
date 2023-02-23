@@ -1,8 +1,8 @@
 import { useContext } from 'react';
+import { Link } from "react-router-dom";
 import styles from './Favorites.module.scss'
 import Card from './Card';
-import AppContext from '../index.js'
-import { Link } from "react-router-dom";
+import AppContext from '..';
 
 
 export default function Favorites() {

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styles from './Main.module.scss'
 import Card from './Card';
-import AppContext from '../index.js'
+import AppContext from '..'
 
 
 export default function Main() {
