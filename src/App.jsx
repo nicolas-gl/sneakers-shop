@@ -15,6 +15,7 @@ export default function App() {
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [itemsLoading, setItemsLoading] = useState(true);
+  const [orders, setOrders] = useState ([]);
 
 
   useEffect(() => {
@@ -49,7 +50,6 @@ export default function App() {
     }
   };
 
-
   const changeSearchInput = (event) => {
     setSearchValue(event.target.value);
   };
@@ -62,6 +62,10 @@ export default function App() {
     setFavorites(prev => prev.filter(item => item.sku !== sku));
   };
 
+  const addToOrders = (obj) => {
+    setOrders(prev => [...prev, obj]);
+  }
+
 
   return (
     <AppContext.Provider
@@ -71,17 +75,29 @@ export default function App() {
         addToCart,
         delFromCart,
         favorites,
-        itemsLoading,
         addToFavorites,
         delFromFavorites,
+        itemsLoading,
         searchValue,
         setSearchValue,
         changeSearchInput,
+        orders,
       }}
     >
+
       <div className={styles.wrapper}>
 
-        {cartOpened ? <Cart setCartItems={setCartItems} closeCart={() => { setCartOpened(false) }} onCartDel={delFromCart} cartItems={cartItems} /> : null}
+        {cartOpened 
+          ? <Cart 
+              closeCart={() => { setCartOpened(false) }}
+              onCartDel={delFromCart}                           // убрать отсюда
+              cartItems={cartItems} 
+              setCartItems={setCartItems}
+              addToOrders={addToOrders}
+            />
+          : null
+        }
+
         <Header openCart={() => { setCartOpened(true) }} />
 
         <Outlet />

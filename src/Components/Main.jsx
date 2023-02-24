@@ -6,7 +6,10 @@ import AppContext from '..'
 
 export default function Main() {
 
-  const { items, searchValue, setSearchValue, changeSearchInput, addToFavorites, addToCart, itemsLoading } = useContext(AppContext);
+
+  // перенеСТИ SEARCHVALUE ИЗ APP TO Main
+
+  const { items, searchValue, setSearchValue, changeSearchInput, itemsLoading } = useContext(AppContext);
 
   return (
     <>
@@ -28,14 +31,11 @@ export default function Main() {
           ? [...Array(12)].map((item, index) => 
             <Card
               key={index}
-              itemsLoading = {itemsLoading}
             />)
           : items.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) =>
             <Card
-              key={item.sku}
+              key={"Main"+item.sku}
               {...item}
-              onFavorite={(obj) => addToFavorites(obj)}
-              onCartAdd={(obj) => addToCart(obj)}
             />)
         }
       </div>

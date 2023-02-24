@@ -6,11 +6,12 @@ import Info from './Info';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, 1000));
 
-export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems }) {
+export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems, addToOrders }) {
 
   const [isOrdered, setIsOrdered] = useState(false);
 
   const onMakeOrder = async () => {
+    addToOrders(cartItems);
     setIsOrdered(true);
     setCartItems([]);
     for (let item of cartItems) {
@@ -24,7 +25,6 @@ export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems }
       }
     }
   }
-
 
   const cartTotal = cartItems.reduce((sum, obj) => obj.price + sum, 0);
 
@@ -41,7 +41,7 @@ export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems }
           ? <> 
               <div className={styles.cartItems}>
               {cartItems.map(item => (
-                <div key={item.sku} id={item.id} className={styles.cartItem}>
+                <div key={'cart'+item.sku} id={item.id} className={styles.cartItem}>
                   <img width={70} height={70} src={item.imgUrl} alt={item.imgAlt} />
                   <div className={styles.cartItemPrice}>
                     <p>{item.title}</p>

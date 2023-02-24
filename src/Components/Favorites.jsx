@@ -1,13 +1,13 @@
 import { useContext } from 'react';
 import { Link } from "react-router-dom";
-import styles from './Favorites.module.scss'
+import styles from './Favorites-Orders.module.scss'
 import Card from './Card';
 import AppContext from '..';
 
 
 export default function Favorites() {
 
-  const { favorites, addToFavorites, addToCart } = useContext(AppContext);
+  const { favorites=[] } = useContext(AppContext);
 
   return (
     <>
@@ -22,31 +22,25 @@ export default function Favorites() {
           </div>
 
           <div className={styles.cards}>
-
-            {favorites.length 
-              ? favorites.map((item) =>
-                <Card
-                  key={item.sku}
-                  {...item}
-                  onFavorite={(obj) => addToFavorites(obj)}
-                  onCartAdd={(obj) => addToCart(obj)}
-                />)
-              : <>
-                  <img src="/img/icons/cry-smile.png" alt="" />
-                </>
-            }
+            {favorites.map((item) =>
+              <Card
+                key={"Favorites"+item.sku}
+                {...item}
+              />
+            )}
           </div>
         </>
       : <div className={styles.emptyContent}>
-          <img className={styles.cryImg} src="/img/icons/cry-smile.png" alt="" />
+          <img className={styles.cryImg} src="/img/icons/sad-smile.png" alt="Sad smile" />
           <h2>Избранного нет :&#40;</h2>
-          <p>Отметьте понравившиеся товары в избранное </p>
+          <p>Отметьте понравившиеся товары в избранное</p>
           <Link to={`/`}>
             <button className={styles.cartBackward} >К товарам
               <img className={styles.cartSBackwardArrow} src="/img/icons/arrow-backward.svg" alt="Go"/>
             </button>
           </Link>
-        </div>}
+        </div>
+      }
     </>
   )
 }

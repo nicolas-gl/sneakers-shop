@@ -1,5 +1,5 @@
 header {
-  padding: 36px 63px 36px 45px;
+  padding: 36px 50px;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #eaeaea;
@@ -25,6 +25,7 @@ header {
   
   
 .headerRight {
+  padding-left: 15px;
   display: flex;
 
   img, span{

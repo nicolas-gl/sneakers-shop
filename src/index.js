@@ -5,6 +5,7 @@ import App from './App';
 import Main from './Components/Main';
 import Test from './Components/Test';
 import Favorites from './Components/Favorites';
+import Orders from './Components/Orders';
 
 
 const AppContext = React.createContext({});
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <Favorites />,
+      },
+      {
+        path: "/orders",
+        element: <Orders />,
       },
     ],
   },

@@ -4,24 +4,22 @@ import ContentLoader from 'react-content-loader'
 import AppContext from '..'
 
 
-export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, onCartAdd }) {
+export default function Card({ sku, title, imgUrl, imgAlt, price }) {
 
-  const { cartItems, favorites, delFromCart, itemsLoading, delFromFavorites } = useContext(AppContext);
+  const {itemsLoading, cartItems, addToCart, delFromCart, favorites, delFromFavorites, addToFavorites } = useContext(AppContext);
   const [inCart, setInCart] = useState(false);
   const [isFavorite, setIsFavorite] = useState();
 
   useEffect( () => {
-    let nowInCart = cartItems.find(item => item.sku === sku);
-    nowInCart
+    cartItems.find(item => item.sku === sku)    // check is item in Cart
       ? setInCart(true)
-      : setInCart(false)
-    }
-  ,[cartItems, sku] );
+      : setInCart(false);
+  } ,[cartItems, sku] );
 
   useEffect( () => {
-    if (favorites.find(item => item.sku === sku)) {
-      setIsFavorite(true);
-    }
+    favorites.find(item => item.sku === sku)   // check is item in Favorites
+      ? setIsFavorite(true)
+      : setIsFavorite(false);
   } ,[favorites, sku] );
 
 
@@ -31,19 +29,18 @@ export default function Card({ sku, title, imgUrl, imgAlt, price, onFavorite, on
     if (inCart) {
       delFromCart(nowInCart.id)
     } else {
-      onCartAdd({ sku, title, imgUrl, imgAlt, price });
+      addToCart({ sku, title, imgUrl, imgAlt, price });
     }
   };
-
 
   const onAddFavoritesClicked = () => {
     setIsFavorite(!isFavorite);
     if (isFavorite) {
       delFromFavorites(sku)
     } else {
-      onFavorite({ sku, title, imgUrl, imgAlt, price });
+      addToFavorites({ sku, title, imgUrl, imgAlt, price });
     }
- };
+  };
 
 
   return (

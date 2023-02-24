@@ -35,7 +35,9 @@ export default function Header(props) {
           </Link>
         </li>
         <li>
-          <img src="/img/icons/user.svg" alt='User'/>
+          <Link to={`/orders`}>
+            <img src="/img/icons/user.svg" alt='User'/>
+          </Link>
         </li>
       </ul>
       
