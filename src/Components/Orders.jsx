@@ -15,7 +15,7 @@ export default function Orders() {
       ? <>  
           <div className={styles.contentHeader}>
             <Link to={`/sneakers-shop/`}>
-              <img src="/img/icons/back-cube.svg" alt="To main" />
+              <img src="img/icons/back-cube.svg" alt="To main" />
             </Link>
             <h1>Заказы</h1>
           </div>
@@ -36,12 +36,12 @@ export default function Orders() {
         </>
 
       : <div className={styles.emptyContent}>
-          <img className={styles.cryImg} src="/img/icons/cry-smile.png" alt="Cry smile" />
+          <img className={styles.cryImg} src="img/icons/cry-smile.png" alt="Cry smile" />
           <h2>У вас еще нет заказов!</h2>
           <p>Закажите любимые товары</p>
           <Link to={`/sneakers-shop/`}>
             <button className={styles.cartBackward} >К товарам
-              <img className={styles.cartSBackwardArrow} src="/img/icons/arrow-backward.svg" alt="Go"/>
+              <img className={styles.cartSBackwardArrow} src="img/icons/arrow-backward.svg" alt="Go"/>
             </button>
           </Link>
         </div>

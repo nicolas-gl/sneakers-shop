@@ -34,7 +34,7 @@ export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems, 
 
       <aside className={styles.cartPopup}>
         <h2>Корзина 
-          <img className={styles.cartItemRemove} onClick={closeCart} src="/img/icons/del-close.svg" alt="Close Card" />
+          <img className={styles.cartItemRemove} onClick={closeCart} src="img/icons/del-close.svg" alt="Close Card" />
         </h2>
 
         {cartItems.length > 0 
@@ -47,7 +47,7 @@ export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems, 
                     <p>{item.title}</p>
                     <b>{item.price} руб.</b>
                   </div>
-                  <img className={styles.cartItemRemove} onClick={() => onCartDel(item.id)} src="/img/icons/del-close.svg" alt="DeleteItem" />
+                  <img className={styles.cartItemRemove} onClick={() => onCartDel(item.id)} src="img/icons/del-close.svg" alt="DeleteItem" />
                 </div>
               ))}
               </div>
@@ -64,20 +64,20 @@ export default function Cart({closeCart, onCartDel, cartItems=[], setCartItems, 
                 </li>
               </ul>
               <button className={styles.cartSubbmit} onClick={onMakeOrder}>Оформить заказ 
-                <img className={styles.cartSubbmitArrow} src="/img/icons/arrow-forward.svg" alt="Go"/>
+                <img className={styles.cartSubbmitArrow} src="img/icons/arrow-forward.svg" alt="Go"/>
               </button>
             </> 
           
           : isOrdered
             ? <Info
                 closeCart = {closeCart}
-                imgPath = "/img/icons/ordered.png"
+                imgPath = "img/icons/ordered.png"
                 h = 'Заказ оформлен'
                 p = 'Ваш заказ скоро будет передан курьерской доставке'
               />
             : <Info
                 closeCart = {closeCart}
-                imgPath = "/img/icons/empty-cart.png"
+                imgPath = "img/icons/empty-cart.png"
                 h = 'Корзина пуста'
                 p = 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ'
               />

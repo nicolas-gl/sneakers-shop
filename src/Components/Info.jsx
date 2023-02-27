@@ -9,7 +9,7 @@ export default function Info({ closeCart, imgPath, h, p}) {
       <h3>{h}</h3>
       <p>{p}</p>
       <button className={styles.cartBackward} onClick={closeCart}>Вернуться назад
-        <img className={styles.cartSBackwardArrow} src="/img/icons/arrow-backward.svg" alt="Go"/>
+        <img className={styles.cartSBackwardArrow} src="img/icons/arrow-backward.svg" alt="Go"/>
       </button>
     </div>
 
