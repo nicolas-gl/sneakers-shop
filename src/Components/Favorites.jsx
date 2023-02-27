@@ -15,7 +15,7 @@ export default function Favorites() {
       {favorites.length 
       ? <>
           <div className={styles.contentHeader}>
-            <Link to={`/`}>
+            <Link to={`/sneakers-shop/`}>
               <img src="/img/icons/back-cube.svg" alt="To main" />
             </Link>
             <h1>Избранное</h1>
@@ -34,7 +34,7 @@ export default function Favorites() {
           <img className={styles.cryImg} src="/img/icons/sad-smile.png" alt="Sad smile" />
           <h2>Избранного нет :&#40;</h2>
           <p>Отметьте понравившиеся товары в избранное</p>
-          <Link to={`/`}>
+          <Link to={`/sneakers-shop/`}>
             <button className={styles.cartBackward} >К товарам
               <img className={styles.cartSBackwardArrow} src="/img/icons/arrow-backward.svg" alt="Go"/>
             </button>
