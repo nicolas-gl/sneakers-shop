@@ -76,7 +76,7 @@ export default function Card({ sku, title, imgUrl, imgAlt, price }) {
             <img
               className={styles.favorite}
               onClick={onAddFavoritesClicked}
-              src={isFavorite ? "/img/icons/heart-liked.svg" : "/img/icons/heart-unliked.svg"}
+              src={isFavorite ? "img/icons/heart-liked.svg" : "img/icons/heart-unliked.svg"}
               alt="unliked"
             />
 
@@ -90,11 +90,11 @@ export default function Card({ sku, title, imgUrl, imgAlt, price }) {
               </div>
 
               {inCart==="waiting"
-                ? <img width={32} height={32} src="/img/icons/waiting.svg" alt="Wait"/>
+                ? <img width={32} height={32} src="img/icons/waiting.svg" alt="Wait"/>
                 : <img
                     className={styles.plusButton}
                     onClick={onCartAddClicked}
-                    src={inCart===true ? "/img/icons/added.svg" : "/img/icons/plus.svg"}
+                    src={inCart===true ? "img/icons/added.svg" : "img/icons/plus.svg"}
                     alt="Plus"
                   />
               }

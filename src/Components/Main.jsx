@@ -18,8 +18,8 @@ export default function Main() {
         <div className={styles.searchBlock}>
 
           {searchValue
-            ? <img width={16} height={16} onClick={() => setSearchValue('')} src="/img/icons/x.svg" alt="reset" />
-            : <img src="/img/icons/search.svg" alt="search" />
+            ? <img width={16} height={16} onClick={() => setSearchValue('')} src="img/icons/x.svg" alt="reset" />
+            : <img src="img/icons/search.svg" alt="search" />
           }
 
           <input onChange={changeSearchInput} value={searchValue} type="text" placeholder="Поиск..." />
