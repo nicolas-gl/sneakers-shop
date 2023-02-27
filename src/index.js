@@ -14,7 +14,7 @@ export default AppContext;
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/sneakers-shop/",
     element: <App />,
     // errorElement: <ErrorPage />,
     errorElement:
@@ -27,17 +27,17 @@ const router = createBrowserRouter([
         element: <Main />,
       },
       {
-        path: "/favorites",
+        path: "/sneakers-shop/favorites",
         element: <Favorites />,
       },
       {
-        path: "/orders",
+        path: "/sneakers-shop/orders",
         element: <Orders />,
       },
     ],
   },
   {
-    path: "/test",
+    path: "/sneakers-shop/test",
     element: 
       <div>
         <Test/>
