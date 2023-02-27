@@ -9,7 +9,7 @@ export default function Test( ) {
     return(
         <>
             <b>{}тест</b>
-            <img src="img/icons/del-close.svg" alt="" />
+            <img src="/img/icons/del-close.svg" alt="" />
         </>
     
 )}

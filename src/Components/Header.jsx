@@ -16,7 +16,7 @@ export default function Header(props) {
         
       <div className={styles.headerLeft}>
         <Link to={`/`}>
-          <img width={40} height={40} src="img/icons/logo.png" alt='logo-icon'/>
+          <img width={40} height={40} src="/img/icons/logo.png" alt='logo-icon'/>
         </Link>
         <div>
         <h3>First Sneakers Shop</h3>
@@ -26,17 +26,17 @@ export default function Header(props) {
 
       <ul className={styles.headerRight}>
         <li>
-          <img onClick={props.openCart} src="img/icons/cart.svg" alt='Cart'/>
+          <img onClick={props.openCart} src="/img/icons/cart.svg" alt='Cart'/>
           <span onClick={props.openCart} className={styles.headerCartPrice}>{cartTotal} руб.</span>
         </li>
         <li className={styles.favorites}>
           <Link to={`/favorites`}>
-            <img width={20} height={20} src="img/icons/heart.svg" alt='Heart'/>
+            <img width={20} height={20} src="/img/icons/heart.svg" alt='Heart'/>
           </Link>
         </li>
         <li>
           <Link to={`/orders`}>
-            <img src="img/icons/user.svg" alt='User'/>
+            <img src="/img/icons/user.svg" alt='User'/>
           </Link>
         </li>
       </ul>
