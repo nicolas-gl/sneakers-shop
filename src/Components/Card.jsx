@@ -77,7 +77,7 @@ export default function Card({ sku, title, imgUrl, imgAlt, price }) {
               className={styles.favorite}
               onClick={onAddFavoritesClicked}
               src={isFavorite ? "img/icons/heart-liked.svg" : "img/icons/heart-unliked.svg"}
-              alt="unliked"
+              alt="liked?"
             />
 
             <img width={150} src={imgUrl} alt={imgAlt} />

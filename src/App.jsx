@@ -87,16 +87,26 @@ export default function App() {
 
       <div className={styles.wrapper}>
 
-        {cartOpened 
+        {/* {cartOpened 
           ? <Cart 
               closeCart={() => { setCartOpened(false) }}
-              onCartDel={delFromCart}                           // убрать отсюда
+              onCartDel={delFromCart}                           // убрать отсюда... или нет...
               cartItems={cartItems} 
               setCartItems={setCartItems}
               addToOrders={addToOrders}
             />
           : null
-        }
+        } */}
+
+        <Cart 
+          opened={cartOpened}
+          closeCart={() => { setCartOpened(false) }}
+          onCartDel={delFromCart}                           // убрать отсюда... или нет...
+          cartItems={cartItems} 
+          setCartItems={setCartItems}
+          addToOrders={addToOrders}
+        />
+
 
         <Header openCart={() => { setCartOpened(true) }} />
 
