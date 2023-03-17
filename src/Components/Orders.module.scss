@@ -12,12 +12,13 @@
   img {
     margin-left: 60px;
   }
-  
+
   h1 {
     padding: 40px 20px;
     margin: 0;
     word-break: break-all;
-}}
+  }
+}
 
 .emptyContent {
   display: flex;
@@ -35,7 +36,7 @@
     text-align: center;
     margin: 24px 0 10px;
   }
-  
+
   p {
     margin: 0 0 60px;
     font-size: 16px;
@@ -49,7 +50,7 @@
   width: 260px;
   margin-bottom: 250px;
 
-  .cartSBackwardArrow{
+  .cartSBackwardArrow {
     position: absolute;
     left: 27px;
     top: 38%;

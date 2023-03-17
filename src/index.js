@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <App />,
     // errorElement: <ErrorPage />,
     errorElement:
-    <div>ошибка 404. Страница в разработке
+      <div>ошибка 404. Страница в разработке
         <Link to={`/`}><button>Go to main page</button></Link>
       </div>,
     children: [
@@ -38,9 +38,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/sneakers-shop/test",
-    element: 
+    element:
       <div>
-        <Test/>
+        <Test />
         <b>This is test page</b>
         <Link to={`/`}><button>Go to main page</button></Link>
       </div>,

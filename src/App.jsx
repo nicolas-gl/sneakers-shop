@@ -15,7 +15,7 @@ export default function App() {
   const [favorites, setFavorites] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [itemsLoading, setItemsLoading] = useState(true);
-  const [orders, setOrders] = useState ([]);
+  const [orders, setOrders] = useState([]);
 
 
   useEffect(() => {
@@ -87,22 +87,11 @@ export default function App() {
 
       <div className={styles.wrapper}>
 
-        {/* {cartOpened 
-          ? <Cart 
-              closeCart={() => { setCartOpened(false) }}
-              onCartDel={delFromCart}                           // убрать отсюда... или нет...
-              cartItems={cartItems} 
-              setCartItems={setCartItems}
-              addToOrders={addToOrders}
-            />
-          : null
-        } */}
-
-        <Cart 
+        <Cart
           opened={cartOpened}
           closeCart={() => { setCartOpened(false) }}
-          onCartDel={delFromCart}                           // убрать отсюда... или нет...
-          cartItems={cartItems} 
+          onCartDel={delFromCart}
+          cartItems={cartItems}
           setCartItems={setCartItems}
           addToOrders={addToOrders}
         />

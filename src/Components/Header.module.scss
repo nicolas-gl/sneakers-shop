@@ -22,13 +22,14 @@ header {
     margin: 0;
   }
 }
-  
-  
+
+
 .headerRight {
   padding-left: 15px;
   display: flex;
 
-  img, span{
+  img,
+  span {
     cursor: pointer;
   }
 }

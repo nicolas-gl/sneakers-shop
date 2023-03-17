@@ -2,15 +2,16 @@ import { useContext } from 'react';
 import AppContext from '..';
 
 
-export default function Test( ) {
+export default function Test() {
     const { items } = useContext(AppContext);
     // param = 32
     console.log(items)
-    return(
+    return (
         <>
-            <b>{}тест</b>
+            <b>{ }тест</b>
             <img src="img/icons/del-close.svg" alt="" />
         </>
-    
-)}
+
+    )
+}
 

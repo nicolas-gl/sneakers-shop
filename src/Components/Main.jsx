@@ -27,14 +27,14 @@ export default function Main() {
       </div>
 
       <div className={styles.cards}>
-        {itemsLoading 
-          ? [...Array(12)].map((item, index) => 
+        {itemsLoading
+          ? [...Array(12)].map((item, index) =>
             <Card
               key={index}
             />)
           : items.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) =>
             <Card
-              key={"Main"+item.sku}
+              key={"Main" + item.sku}
               {...item}
             />)
         }

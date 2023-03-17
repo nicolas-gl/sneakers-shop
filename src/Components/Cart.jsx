@@ -6,7 +6,7 @@ import Info from './Info';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, 1000));
 
-export default function Cart({opened, closeCart, onCartDel, cartItems=[], setCartItems, addToOrders }) {
+export default function Cart({ opened, closeCart, onCartDel, cartItems = [], setCartItems, addToOrders }) {
 
   const [isOrdered, setIsOrdered] = useState(false);
 
@@ -19,7 +19,7 @@ export default function Cart({opened, closeCart, onCartDel, cartItems=[], setCar
       try {
         // crutch for Mockapi. Because 
         await axios.delete(`https://63da6dca2af48a60a7cd9696.mockapi.io/cart/${id}`);
-        await delay(100);  
+        await delay(100);
       } catch (error) {
         console.log("не удалось удалить", error)
       }
@@ -38,15 +38,15 @@ export default function Cart({opened, closeCart, onCartDel, cartItems=[], setCar
     <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ``}`}>
 
       <aside className={styles.popup}>
-        <h2>Корзина 
+        <h2>Корзина
           <img className={styles.itemRemove} onClick={onCartCloseClick} src="img/icons/del-close.svg" alt="Close Card" />
         </h2>
 
-        {cartItems.length > 0 
-          ? <> 
-              <div className={styles.items}>
+        {cartItems.length > 0
+          ? <>
+            <div className={styles.items}>
               {cartItems.map(item => (
-                <div key={'cart'+item.sku} id={item.id} className={styles.item}>
+                <div key={'cart' + item.sku} id={item.id} className={styles.item}>
                   <img width={70} height={70} src={item.imgUrl} alt={item.imgAlt} />
                   <div className={styles.itemPrice}>
                     <p>{item.title}</p>
@@ -55,37 +55,37 @@ export default function Cart({opened, closeCart, onCartDel, cartItems=[], setCar
                   <img className={styles.itemRemove} onClick={() => onCartDel(item.id)} src="img/icons/del-close.svg" alt="DeleteItem" />
                 </div>
               ))}
-              </div>
-              <ul className={styles.total}>
-                <li>
-                  <span>Итого:</span>
-                  <div></div>
-                  <b>{cartTotal} руб.</b>
-                </li>
-                <li>
-                  <span>Налог 5%:</span>
-                  <div></div>
-                  <b>{(cartTotal*0.05).toFixed(2)} руб.</b>
-                </li>
-              </ul>
-              <button className={styles.subbmit} onClick={onMakeOrder}>Оформить заказ 
-                <img className={styles.subbmitArrow} src="img/icons/arrow-forward.svg" alt="Go"/>
-              </button>
-            </> 
-          
+            </div>
+            <ul className={styles.total}>
+              <li>
+                <span>Итого:</span>
+                <div></div>
+                <b>{cartTotal} руб.</b>
+              </li>
+              <li>
+                <span>Налог 5%:</span>
+                <div></div>
+                <b>{(cartTotal * 0.05).toFixed(2)} руб.</b>
+              </li>
+            </ul>
+            <button className={styles.subbmit} onClick={onMakeOrder}>Оформить заказ
+              <img className={styles.subbmitArrow} src="img/icons/arrow-forward.svg" alt="Go" />
+            </button>
+          </>
+
           : isOrdered
             ? <Info
-                closeCart = {onCartCloseClick}
-                imgPath = "img/icons/ordered.png"
-                h = 'Заказ оформлен'
-                p = 'Ваш заказ скоро будет передан курьерской доставке'
-              />
+              closeCart={onCartCloseClick}
+              imgPath="img/icons/ordered.png"
+              h='Заказ оформлен'
+              p='Ваш заказ скоро будет передан курьерской доставке'
+            />
             : <Info
-                closeCart = {onCartCloseClick}
-                imgPath = "img/icons/empty-cart.png"
-                h = 'Корзина пуста'
-                p = 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ'
-              />
+              closeCart={onCartCloseClick}
+              imgPath="img/icons/empty-cart.png"
+              h='Корзина пуста'
+              p='Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ'
+            />
         }
 
       </aside>

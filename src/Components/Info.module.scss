@@ -20,7 +20,7 @@
     margin-bottom: 35px;
   }
 }
-  
+
 .cartBackward {
   @extend %greenButton;
   width: 75%;
@@ -34,7 +34,7 @@
 
   &:hover {
     .cartSBackwardArrow {
-    transform: translateX(-5px);
+      transform: translateX(-5px);
     }
   }
 }
