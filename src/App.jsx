@@ -13,7 +13,6 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
   const [itemsLoading, setItemsLoading] = useState(true);
   const [orders, setOrders] = useState([]);
 
@@ -50,10 +49,6 @@ export default function App() {
     }
   };
 
-  const changeSearchInput = (event) => {
-    setSearchValue(event.target.value);
-  };
-
   const addToFavorites = (obj) => {
     setFavorites(prev => [...prev, obj]);
   };
@@ -78,9 +73,6 @@ export default function App() {
         addToFavorites,
         delFromFavorites,
         itemsLoading,
-        searchValue,
-        setSearchValue,
-        changeSearchInput,
         orders,
       }}
     >

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styles from './Main.module.scss'
 import Card from './Card';
 import AppContext from '..'
@@ -6,10 +6,12 @@ import AppContext from '..'
 
 export default function Main() {
 
+  const changeSearchInput = (event) => {
+    setSearchValue(event.target.value);
+  };
 
-  // перенеСТИ SEARCHVALUE ИЗ APP TO Main
-
-  const { items, searchValue, setSearchValue, changeSearchInput, itemsLoading } = useContext(AppContext);
+  const [searchValue, setSearchValue] = useState('');
+  const { items, itemsLoading } = useContext(AppContext);
 
   return (
     <>
