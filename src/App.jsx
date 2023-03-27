@@ -20,7 +20,7 @@ export default function App() {
   useEffect(() => {
     try {
       axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/items')
-        .then(res => { setItems(res.data) });
+        .then(res => { setItems(res.data[0].sneakers.items) });
       axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/cart')
         .then(res => {
           setCartItems(res.data);
