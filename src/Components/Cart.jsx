@@ -46,7 +46,7 @@ export default function Cart({ opened, closeCart, onCartDel, cartItems = [], set
           ? <>
             <div className={styles.items}>
               {cartItems.map(item => (
-                <div key={'cart' + item.sku} id={item.id} className={styles.item}>
+                <div key={item.sku} id={item.id} className={styles.item}>
                   <img width={70} height={70} src={item.imgUrl} alt={item.imgAlt} />
                   <div className={styles.itemPrice}>
                     <p>{item.title}</p>

@@ -36,7 +36,7 @@ export default function Main() {
             />)
           : items.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) =>
             <Card
-              key={"Main" + item.sku}
+              key={item.sku}
               {...item}
             />)
         }

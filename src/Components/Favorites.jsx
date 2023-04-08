@@ -24,7 +24,7 @@ export default function Favorites() {
           <div className={styles.cards}>
             {favorites.map((item) =>
               <Card
-                key={"Favorites" + item.sku}
+                key={item.sku}
                 {...item}
               />
             )}

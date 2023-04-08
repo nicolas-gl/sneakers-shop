@@ -21,12 +21,12 @@ export default function Orders() {
           </div>
 
           {orders.map((order, index) =>
-            <div key={`Order-${index}`}>
+            <div key={`${index}`}>
               <h2 className={styles.orderTitle}>Заказ {index + 1}</h2>
               <div className={styles.cards}>
                 {order.map((item) =>
                   <Card
-                    key={`${index}-${item.sku}`}
+                    key={`${item.sku}`}
                     {...item}
                   />
                 )}
