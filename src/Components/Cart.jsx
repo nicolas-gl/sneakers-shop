@@ -4,8 +4,6 @@ import styles from './Cart.module.scss'
 import Info from './Info';
 
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, 1000));
-
 export default function Cart({ opened, closeCart, onCartDel, cartItems = [], setCartItems, addToOrders }) {
 
   const [isOrdered, setIsOrdered] = useState(false);
@@ -14,16 +12,11 @@ export default function Cart({ opened, closeCart, onCartDel, cartItems = [], set
     addToOrders(cartItems);
     setIsOrdered(true);
     setCartItems([]);
-    for (let item of cartItems) {
-      const id = item.id;
-      try {
-        // crutch for Mockapi. Because 
-        await axios.delete(`https://63da6dca2af48a60a7cd9696.mockapi.io/cart/${id}`);
-        await delay(100);
-      } catch (error) {
-        console.log("не удалось удалить", error)
-      }
-    }
+    try {
+      axios.put(`https://63da6dca2af48a60a7cd9696.mockapi.io/additional/${"sneakers"}`, { "cart": [] });
+    } catch (error) {
+      console.log("не удалось очистить корзину", error)
+    };
   }
 
   const onCartCloseClick = () => {
@@ -52,7 +45,7 @@ export default function Cart({ opened, closeCart, onCartDel, cartItems = [], set
                     <p>{item.title}</p>
                     <b>{item.price} руб.</b>
                   </div>
-                  <img className={styles.itemRemove} onClick={() => onCartDel(item.id)} src="img/icons/del-close.svg" alt="DeleteItem" />
+                  <img className={styles.itemRemove} onClick={() => onCartDel(item)} src="img/icons/del-close.svg" alt="DeleteItem" />
                 </div>
               ))}
             </div>

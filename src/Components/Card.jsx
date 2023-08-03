@@ -27,7 +27,7 @@ export default function Card({ sku, title, imgUrl, imgAlt, price }) {
     setInCart("waiting");
     let nowInCart = cartItems.find(item => item.sku === sku);
     if (inCart) {
-      delFromCart(nowInCart.id)
+      delFromCart(nowInCart)
     } else {
       addToCart({ sku, title, imgUrl, imgAlt, price });
     }

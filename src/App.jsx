@@ -21,9 +21,9 @@ export default function App() {
     try {
       axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/items')
         .then(res => { setItems(res.data[0].sneakers.items) });
-      axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/cart')
+      axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/additional/sneakers')
         .then(res => {
-          setCartItems(res.data);
+          setCartItems(res.data.cart);
           setItemsLoading(false);
         });
     } catch (error) {
@@ -33,20 +33,22 @@ export default function App() {
 
   const addToCart = async (obj) => {
     try {
-      const { data } = await axios.post('https://63da6dca2af48a60a7cd9696.mockapi.io/cart', obj);
-      setCartItems(prev => [...prev, data]);
+      setCartItems([...cartItems, obj]);
+      await axios.put(`https://63da6dca2af48a60a7cd9696.mockapi.io/additional/${"sneakers"}`, { "cart": [...cartItems, obj] });
     } catch (error) {
-      console.log("не удалось добавить в корзину", error)
-    }
+      console.log(`не удалось добавить в корзину ${obj.title}`, error)
+    };
   };
 
-  const delFromCart = (id) => {
+  const delFromCart = async (obj) => {
     try {
-      axios.delete(`https://63da6dca2af48a60a7cd9696.mockapi.io/cart/${id}`);
-      setCartItems(prev => prev.filter(item => item.id !== id));
+      var now = [...cartItems.filter(item => item.sku !== obj.sku)];
+      setCartItems(now);
+      await axios.put(`https://63da6dca2af48a60a7cd9696.mockapi.io/additional/${"sneakers"}`, { "cart": now });
     } catch (error) {
-      console.log("не удалось удалить", error)
-    }
+      console.log(`не удалось удалить из корзины ${obj.title}`, error);
+      alert(`не удалось удалить из корзины ${obj.title}`, error);
+    };
   };
 
   const addToFavorites = (obj) => {
@@ -78,6 +80,7 @@ export default function App() {
     >
 
       <div className={styles.wrapper}>
+        <button onClick={() => { console.log(cartItems) }}>ЖМИ</button>
 
         <Cart
           opened={cartOpened}
