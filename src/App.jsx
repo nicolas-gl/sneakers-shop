@@ -80,7 +80,6 @@ export default function App() {
     >
 
       <div className={styles.wrapper}>
-        <button onClick={() => { console.log(cartItems) }}>ЖМИ</button>
 
         <Cart
           opened={cartOpened}
