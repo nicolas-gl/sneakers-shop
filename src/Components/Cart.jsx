@@ -2,10 +2,12 @@ import { useState } from 'react'
 import axios from 'axios';
 import styles from './Cart.module.scss'
 import Info from './Info';
+import useOutsideClick from '../useOutsideClick';
 
 
 export default function Cart({ opened, closeCart, onCartDel, cartItems = [], setCartItems, addToOrders }) {
 
+  const ref = useOutsideClick(opened, closeCart);
   const [isOrdered, setIsOrdered] = useState(false);
 
   const onMakeOrder = async () => {
@@ -28,9 +30,10 @@ export default function Cart({ opened, closeCart, onCartDel, cartItems = [], set
 
 
   return (
-    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ``}`}>
 
-      <aside className={styles.popup}>
+    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ``}`}>
+      <aside ref={ref} className={styles.popup}>
+
         <h2>Корзина
           <img className={styles.itemRemove} onClick={onCartCloseClick} src="img/icons/del-close.svg" alt="Close Card" />
         </h2>
@@ -83,5 +86,6 @@ export default function Cart({ opened, closeCart, onCartDel, cartItems = [], set
 
       </aside>
     </div>
+
   )
 }

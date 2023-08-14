@@ -16,7 +16,6 @@ export default function App() {
   const [itemsLoading, setItemsLoading] = useState(true);
   const [orders, setOrders] = useState([]);
 
-
   useEffect(() => {
     try {
       axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/items')
@@ -76,11 +75,9 @@ export default function App() {
         delFromFavorites,
         itemsLoading,
         orders,
-      }}
-    >
+      }}>
 
       <div className={styles.wrapper}>
-
         <Cart
           opened={cartOpened}
           closeCart={() => { setCartOpened(false) }}
@@ -89,14 +86,10 @@ export default function App() {
           setCartItems={setCartItems}
           addToOrders={addToOrders}
         />
-
-
         <Header openCart={() => { setCartOpened(true) }} />
-
         <Outlet />
-
       </div>
 
-    </AppContext.Provider>
+    </AppContext.Provider >
   );
 };
