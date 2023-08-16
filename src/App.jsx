@@ -18,8 +18,8 @@ export default function App() {
 
   useEffect(() => {
     try {
-      axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/items')
-        .then(res => { setItems(res.data[0].sneakers.items) });
+      axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/main/sneakers')
+        .then(res => { setItems(res.data.items) });
       axios.get('https://63da6dca2af48a60a7cd9696.mockapi.io/additional/sneakers')
         .then(res => {
           setCartItems(res.data.cart);
